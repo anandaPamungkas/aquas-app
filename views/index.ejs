@@ -1,0 +1,259 @@
+<%- include('partials/header') %>
+    <div class="container body home">
+
+        <div class="main_container">
+            <div class="col-md-3 left_col">
+                <%- include('partials/sidebar-menu') %>
+            </div>
+
+            <%- include('partials/top-navigation') %>
+                <div class="right_col" role="main">
+                    <div class="page-title">
+                        <div class="title_left">
+                            <h3>Dashboard Utama</h3>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                    <!--Start feed and pump console row-->
+                    <div class="row feed_info_container">
+                        <!--Start light console container-->
+                        <div class="col-md-8 col-sm-8  ">
+                            <div class="dashboard_graph">
+
+                                <div class="row x_title">
+                                    <div class="col-md-6">
+                                        <h3>Persediaan Pakan</h3>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-9 col-sm-9 ">
+                                    <div class="progress aquas_feed_bar_wrapper">
+                                        <div id="aquas_feed_bar" class="progress-bar" role="progressbar" style="width: 75%;" aria-valuenow="75">75%</div>
+                                    </div>
+                                    <div class="feed_qty_wrapper">
+                                        <div id="aquas_feed_qty" class="feed_qty"></div>
+                                    </div>
+                                    <div class="d-flex justify-content-center aquas_button_container">
+                                        <a href="/single-feed" id="aquas_feed_detail" class="btn btn-primary aquas-button">Detail Pakan</a>
+                                    </div>
+                                </div>
+                                <div class="col-md-3 col-sm-3  bg-white">
+                                    <div class="col-md-12 col-sm-12 ">
+
+                                        <div class="x_title">
+                                            <h2>Konsol Pakan</h2>
+                                            <div class="clearfix"></div>
+                                        </div>
+                                        <div class="aquas_auto_feed_toggle_container">
+                                            <div class="custom-control custom-switch custom-switch-md">
+                                                <input type="checkbox" class="custom-control-input" id="aquas_auto_feed_toggle" <% if(items[0].status=='auto' ){ %> checked
+                                                <%}%> >
+                                                    <label class="custom-control-label" for="aquas_auto_feed_toggle"><% if(items[0].status=='auto' ){ %> Auto <%}else{%> Manual <%}%></label>
+                                            </div>
+                                            <p class="control_description">Aktifkan kontrol pakan otomatis</p>
+                                        </div>
+                                        <div class="aquas_manual_feed_toggle_container" <% if(items[0].status=='auto' ){ %> style="display:none"
+                                            <%}%> >
+                                                <div class="custom-control custom-switch custom-switch-md">
+                                                    <input type="checkbox" class="custom-control-input" id="aquas_manual_feed_toggle">
+                                                    <label class="custom-control-label" for="aquas_manual_feed_toggle">tutup</label>
+                                                    <div class="loader-container"></div>
+                                                </div>
+                                                <p class="control_description">Buka atau tutup container pakan</p>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                                <div class="clearfix"></div>
+                            </div>
+                        </div>
+                        <!--End light console container-->
+                        <!--Start pump console container-->
+                        <div class="col-md-4 col-sm-4 ">
+                            <div class="x_panel tile">
+                                <div class="x_title">
+                                    <h2>Konsol Pompa</h2>
+                                    <div class="clearfix"></div>
+                                </div>
+                                <div class="x_content">
+                                    <div class="col-md-12 col-sm-12 ">
+                                        <div>
+                                            <div class="pump_icon_wrapper">
+                                                <img id="pump_icon" class='aquas_pump_icon' src="/public/assets/img/pump-icon.svg">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12 col-sm-12 ">
+                                        <div class="aquas_manual_pump_toggle_container">
+                                            <div class="custom-control custom-switch custom-switch-md">
+                                                <input type="checkbox" class="custom-control-input" id="aquas_manual_pump_toggle" <% if(items[1].status=='on' ){ %> checked
+                                                <%}%> >
+                                                    <label class="custom-control-label" for="aquas_manual_pump_toggle"> <% if(items[1].status=='on' ){ %> On <%}else{%> Off <%}%> </label>
+                                                    <div class="loader-container"></div>
+                                            </div>
+                                            <p class="control_description">Hidupkan atau matikan pompa</p>
+                                        </div>
+                                    </div>
+
+
+                                </div>
+                            </div>
+                        </div>
+                        <!--End pump console container-->
+                    </div>
+                    <!--End Feed and pump console row-->
+                    <br />
+                    <!--Start light console row container-->
+                    <div class="row light_info_container">
+                        <div class="col-md-12 col-sm-12 ">
+                            <div class="dashboard_graph">
+
+                                <div class="row x_title">
+                                    <div class="col-md-6">
+                                        <h3>Intensitas Cahaya</h3>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-9 col-sm-9 ">
+                                    <canvas id="aquas_light_chart"></canvas>
+                                </div>
+                                <div class="col-md-3 col-sm-3  bg-white">
+                                    <div class="x_title">
+                                        <h2>Intensitas Cahaya Realtime</h2>
+                                        <div class="clearfix"></div>
+                                    </div>
+
+                                    <div class="col-md-12 col-sm-12 ">
+                                        <div>
+                                            <div class="current_value_wrapper">
+                                                <span id="aquas_light_current_value" class='aquas_current_value'></span><span class="light_lux"> lux</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12 col-sm-12 ">
+
+                                        <div class="x_title">
+                                            <h2>Konsol Pencahayaan</h2>
+                                            <div class="clearfix"></div>
+                                        </div>
+                                        <div class="aquas_auto_light_toggle_container">
+                                            <div class="custom-control custom-switch custom-switch-md">
+
+                                                <input type="checkbox" class="custom-control-input" id="aquas_auto_light_toggle" <% if(items[2].status=='auto' ){ %> checked
+                                                <%}%> >
+                                                    <label class="custom-control-label" for="aquas_auto_light_toggle"><% if(items[2].status=='auto' ){ %> Auto <%}else{%> Manual <%}%></label>
+                                            </div>
+                                            <p class="control_description">Aktifkan kontrol pencahayaan otomatis</p>
+                                        </div>
+                                        <div class="aquas_manual_light_toggle_container" <% if(items[2].status=='auto' ){ %> style="display:none"
+                                            <%}%> >
+                                                <div class="custom-control custom-switch custom-switch-md">
+                                                    <input type="checkbox" class="custom-control-input" id="aquas_manual_light_toggle" <% if(items[3].status=='on' ){ %> checked
+                                                    <%}%>>
+                                                        <label class="custom-control-label" for="aquas_manual_light_toggle"> <% if(items[3].status=='on' ){ %> On <%}else{%> Off <%}%> </label>
+                                                        <div class="loader-container"></div>
+                                                </div>
+                                                <p class="control_description">Hidupkan atau matikan growlight</p>
+                                        </div>
+                                        <div class="d-flex justify-content-center aquas_button_container">
+                                            <a href="/single-light" id="aquas_light_detail" class="btn btn-primary aquas-button">Detail Pencahayaan</a>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <div class="clearfix"></div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <!--End Light console row container-->
+                    <br />
+
+                    <!--Start Temp row container-->
+                    <div class="row temp_info_container">
+                        <div class="col-md-12 col-sm-12 ">
+                            <div class="dashboard_graph">
+
+                                <div class="row x_title">
+                                    <div class="col-md-6">
+                                        <h3>Suhu Air</h3>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-9 col-sm-9 ">
+                                    <canvas id="aquas_temp_chart"></canvas>
+                                </div>
+                                <div class="col-md-3 col-sm-3  bg-white">
+                                    <div class="x_title">
+                                        <h2>Suhu Air Realtime</h2>
+                                        <div class="clearfix"></div>
+                                    </div>
+
+                                    <div class="col-md-12 col-sm-12 ">
+                                        <div>
+                                            <div class="current_value_wrapper">
+                                                <span id="aquas_temp_current_value" class='aquas_current_value'></span><span class="temp_degree"> &deg; C</span>
+                                            </div>
+                                        </div>
+                                        <div class="d-flex justify-content-center aquas_button_container">
+                                            <a href="/single-temp" id="aquas_temp_detail" class="btn btn-primary aquas-button">Detail Suhu Air</a>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class="clearfix"></div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <!--End Temp row container-->
+                    <br />
+
+                    <!--Start pH row container-->
+                    <div class="row ph_info_container">
+                        <div class="col-md-12 col-sm-12 ">
+                            <div class="dashboard_graph">
+
+                                <div class="row x_title">
+                                    <div class="col-md-6">
+                                        <h3>Derajat pH Air</h3>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-9 col-sm-9 ">
+                                    <canvas id="aquas_ph_chart"></canvas>
+                                </div>
+                                <div class="col-md-3 col-sm-3  bg-white">
+                                    <div class="x_title">
+                                        <h2>pH Air Realtime</h2>
+                                        <div class="clearfix"></div>
+                                    </div>
+
+                                    <div class="col-md-12 col-sm-12 ">
+                                        <div>
+                                            <div class="current_value_wrapper">
+                                                <span id="aquas_ph_current_value" class='aquas_current_value'></span>
+                                            </div>
+                                        </div>
+                                        <div class="d-flex justify-content-center aquas_button_container">
+                                            <a href="/single-ph" id="aquas_ph_detail" class="btn btn-primary aquas-button">Detail pH Air</a>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+
+                                <div class="clearfix"></div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <!--End pH row container-->
+                    <br />
+                </div>
+
+                <%- include('partials/footer') %>

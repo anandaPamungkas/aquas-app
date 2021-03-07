@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="/public/assets/img/aquas-icon-colored.png" type="image/ico" fill="none" />
+
+    <title>AQUAS (Aquaponic Automation System)</title>
+
+    <!-- Bootstrap -->
+    <link href="/public/vendor/gentelella/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="/public/vendor/gentelella/vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <!--Aquas Main CSS-->
+    <link href="/public/assets/css/login.css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+                <div class="card card-signin my-5">
+                    <div class="card-body">
+                        <h5 class="card-title text-center">AQUAS Log In</h5>
+                        <div class="site-logo text-center" fill="none">
+                            <img src="/public/assets/img/aquas-icon-colored.svg">
+                        </div>
+                        <form id="login_form" class="form-signin" action="/login" method="post">
+                            <div class="form-label-group">
+                                <input type="email" id="email" name="email" class="form-control" placeholder="Alamat Email" autofocus>
+                                <label for="email">Alamat Email</label>
+                            </div>
+
+                            <div class="form-label-group">
+                                <input type="password" id="password" name="password" class="form-control" placeholder="Password" autofocus>
+                                <label for="password">Password</label>
+                            </div>
+                            <% if(messages.error){ %>
+                                <div class="form-label-group d-flex justify-content-center">
+                                    <small class="alert alert-danger">
+                                    <%= messages.error %>
+                                </small>
+                                </div>
+                                <% } %>
+                                    <div class="custom-control custom-checkbox mb-3">
+                                        <input type="checkbox" class="custom-control-input" id="customCheck1">
+                                        <label class="custom-control-label" for="customCheck1">Ingat password</label>
+                                    </div>
+                                    <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Login</button>
+                                    <hr class="my-4">
+
+                                    <div class="footer-copyright">
+                                        <span class="text-muted">AQUAS v1.0.0 - Aquaponic Automation System by <a href="https://github.com/anandaPamungkas">Ananda</a></span>
+                                    </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<!-- jQuery -->
+<script src="/public/vendor/gentelella/vendors/jquery/dist/jquery.min.js"></script>
+<!-- Bootstrap -->
+<script src="/public/vendor/gentelella/vendors/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<!--JQuery Validation-->
+<script src="/public/vendor/jquery-validation/dist/jquery.validate.min.js"></script>
+<!--Aquas Form Validation Script-->
+<script src="/public/assets/js/form-validate.js"></script>
+
+</html>

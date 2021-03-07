@@ -1,0 +1,167 @@
+<%- include('partials/header') %>
+    <div class="container body">
+
+        <div class="main_container">
+            <div class="col-md-3 left_col">
+                <%- include('partials/sidebar-menu') %>
+            </div>
+
+            <%- include('partials/top-navigation') %>
+                <div class="right_col" role="main">
+                    <div class="page-title">
+                        <div class="title_left">
+                            <h3>Detail Pakan</h3>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                    <!--Start Feed console row container-->
+                    <div class="row feed_info_container">
+                        <div class="col-md-12 col-sm-12 ">
+                            <div class="dashboard_graph">
+
+                                <div class="row x_title">
+                                    <div class="col-md-6">
+                                        <h3>Persediaan Pakan</h3>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-9 col-sm-9 ">
+                                    <div class="progress aquas_feed_bar_wrapper">
+                                        <div id="aquas_feed_bar" class="progress-bar" role="progressbar" style="width: 75%;" aria-valuenow="75">75%</div>
+                                    </div>
+                                    <div class="feed_qty_wrapper">
+                                        <div id="aquas_feed_qty" class="feed_qty"></div>
+                                    </div>
+
+                                </div>
+                                <div class="col-md-3 col-sm-3  bg-white">
+                                    <div class="col-md-12 col-sm-12 ">
+
+                                        <div class="x_title">
+                                            <h2>Konsol Pakan</h2>
+                                            <div class="clearfix"></div>
+                                        </div>
+                                        <div class="aquas_auto_feed_toggle_container">
+                                            <div class="custom-control custom-switch custom-switch-md">
+                                                <input type="checkbox" class="custom-control-input" id="aquas_auto_feed_toggle" <% if(input_items[0].status=='auto' ){ %> checked
+                                                <%}%> >
+                                                    <label class="custom-control-label" for="aquas_auto_feed_toggle"><% if(input_items[0].status=='auto' ){ %> Auto <%}else{%> Manual <%}%></label>
+
+                                            </div>
+                                            <p class="control_description">Aktifkan kontrol pakan otomatis</p>
+                                        </div>
+                                        <div class="aquas_manual_feed_toggle_container" <% if(input_items[0].status=='auto' ){ %> style="display:none"
+                                            <%}%> >
+                                                <div class="custom-control custom-switch custom-switch-md">
+                                                    <input type="checkbox" class="custom-control-input" id="aquas_manual_feed_toggle">
+                                                    <label class="custom-control-label" for="aquas_manual_feed_toggle">tutup</label>
+                                                    <div class="loader-container"></div>
+                                                </div>
+                                                <p class="control_description">Buka atau tutup container pakan</p>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                                <div class="clearfix"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--End Feed console row container-->
+                    <br />
+                    <!--Start feed schedule form row container-->
+                    <div class="row feed_info_container">
+                        <div class="col-md-12 col-sm-12 ">
+                            <div class="row">
+                                <div class="col-md-12 col-sm-12">
+                                    <div class="x_panel">
+                                        <div class="row x_title">
+                                            <div class="col-md-6">
+                                                <h3>Jadwal Pakan Ikan</h3>
+                                            </div>
+                                        </div>
+                                        <div class="x_content">
+                                            <form id="feed_schedule_form" action="/single-feed" method="post">
+                                                <p>Tentukan jadwal pemberian pakan ikan pada form ini</p>
+                                                <% if (form_items.length > 0) {%>
+                                                    <% form_items.forEach((item, index) => { %>
+                                                        <div class="field item form-group">
+                                                            <label class="col-form-label col-md-3 col-sm-3  label-align">Waktu Pakan <%= item.jenis %><span class="required">*</span></label>
+                                                            <div class="col-md-6 col-sm-6">
+                                                                <input class="form-control" type="text" id="waktu_pakan_<%= item.jenis %>" name="waktu_pakan_<%= item.jenis %>" data-waktu="<%= item.waktu %>" required='required'></div>
+                                                        </div>
+                                                        <% }) %>
+                                                            <% } else { %>
+                                                                <div class="field item form-group">
+                                                                    <label class="col-form-label col-md-3 col-sm-3  label-align">Waktu Pakan Pagi<span class="required">*</span></label>
+                                                                    <div class="col-md-6 col-sm-6">
+                                                                        <input class="form-control" type="text" id="waktu_pakan_pagi" name="waktu_pakan_pagi" data-waktu="08:00" required='required'></div>
+                                                                </div>
+                                                                <div class="field item form-group">
+                                                                    <label class="col-form-label col-md-3 col-sm-3  label-align">Waktu Pakan Siang<span class="required">*</span></label>
+                                                                    <div class="col-md-6 col-sm-6">
+                                                                        <input class="form-control" type="text" id="waktu_pakan_siang" name="waktu_pakan_siang" data-waktu="12:00" required='required'></div>
+                                                                </div>
+                                                                <div class="field item form-group">
+                                                                    <label class="col-form-label col-md-3 col-sm-3  label-align">Waktu Pakan Sore<span class="required">*</span></label>
+                                                                    <div class="col-md-6 col-sm-6">
+                                                                        <input class="form-control" type="text" id="waktu_pakan_sore" name="waktu_pakan_sore" data-waktu="16:00" required='required'></div>
+                                                                </div>
+                                                                <% } %>
+                                                                    <div class="ln_solid">
+                                                                        <div class="form-group">
+                                                                            <div class="col-md-6 offset-md-3">
+                                                                                <button id="btn_submit_feed_scheduled" type='submit' class="btn btn-primary">Submit</button>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <br />
+                    <!--End feed schedule form row container-->
+                    <div class="row feeder_timeout_setting_container">
+                        <div class="col-md-12 col-sm-12 ">
+                            <div class="row">
+                                <div class="col-md-12 col-sm-12">
+                                    <div class="x_panel">
+                                        <div class="row x_title">
+                                            <div class="col-md-6">
+                                                <h3>Timeout Pintu Pakan</h3>
+                                            </div>
+                                        </div>
+                                        <div class="x_content">
+                                            <form id="feeder_timeout_form" action="/feeder-timeout-setting" method="post">
+                                                <p>Tentukan kuantitas pakan yang diberikan dengan mengatur timeout pintu pakan</p>
+
+                                                <div class="field item form-group">
+                                                    <label class="col-form-label col-md-3 col-sm-3  label-align">Timeout Pintu Pakan<span class="required">*</span></label>
+                                                    <div class="col-md-6 col-sm-6">
+                                                        <input class="form-control" type="text" id="feeder_timeout" name="timeout_pintu_pakan" value="<%= timeout_pakan %>" data-bts-min="1" data-bts-postfix="detik" required='required'>
+                                                    </div>
+                                                </div>
+                                                <div class="ln_solid">
+                                                    <div class="form-group">
+                                                        <div class="col-md-6 offset-md-3">
+                                                            <button id="btn_submit_feeder_timeout" type='submit' class="btn btn-primary">Submit</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+
+                <%- include('partials/footer') %>
