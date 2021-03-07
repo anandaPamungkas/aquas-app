@@ -1,3 +1,3 @@
 .env
 public/uploads/*
-!public/uploads/no_profile.jpg
+!public/uploads/no_profile.jpeg
