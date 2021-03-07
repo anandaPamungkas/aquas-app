@@ -14,11 +14,11 @@ System Capabilities :
 
 Aquaponic kit (Build on Arduino Environment)
 
-![Alt text](https://ibb.co/gFn3XL7 "Aquaponic Kit")
+![Aquaponic kit](https://user-images.githubusercontent.com/64517019/110229535-3692e680-7f45-11eb-8b96-afc3e3bf22a9.jpg)
 
 Website Interface (Based on NodeJs)
 
-![Alt text](https://ibb.co/Zzv8Qfp "Website Interface")
+![Website Interface](https://user-images.githubusercontent.com/64517019/110229526-12cfa080-7f45-11eb-9f5c-acb96504886a.png)
 
 ## Getting Started
 
@@ -47,7 +47,7 @@ hardawre requirement to build aquaponic kit
 
 * assamble the hardware according to the following block diagram 
 
-![Alt text](https://ibb.co/F3vTR3N "Block Diagram")
+![Block Diagram](https://user-images.githubusercontent.com/64517019/110229532-25e27080-7f45-11eb-8535-32c5d4c4fa65.png)
 
 * go to this link and follow the instruction to to make the database migration https://github.com/anandaPamungkas/aquas-seqelize-migration
 
